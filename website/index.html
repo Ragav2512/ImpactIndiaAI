@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India AI Impact Expo 2026 - Startup Directory</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">India AI Impact Expo 2026</h1>
+                <p class="hero-subtitle">Startup Directory - 395+ Exhibitors</p>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalStartups">395</div>
+                        <div class="stat-label">Startups</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalCategories">20</div>
+                        <div class="stat-label">Categories</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalHalls">15</div>
+                        <div class="stat-label">Halls</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search and Filter Section -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="search-wrapper">
+                <input type="text" id="searchInput" placeholder="🔍 Search startups by name, category, or technology..." class="search-input">
+            </div>
+            
+            <div class="filters">
+                <div class="filter-group">
+                    <label>Filter by Category:</label>
+                    <select id="categoryFilter" class="filter-select">
+                        <option value="">All Categories</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Filter by Hall:</label>
+                    <select id="hallFilter" class="filter-select">
+                        <option value="">All Halls</option>
+                    </select>
+                </div>
+                
+                <button id="resetFilters" class="btn-reset">Reset Filters</button>
+            </div>
+            
+            <div class="results-info">
+                <span id="resultsCount">395 startups found</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Startups Grid -->
+    <section class="startups-section">
+        <div class="container">
+            <div id="startupsGrid" class="startups-grid">
+                <!-- Startup cards will be dynamically inserted here -->
+            </div>
+            
+            <div id="noResults" class="no-results" style="display: none;">
+                <h3>No startups found</h3>
+                <p>Try adjusting your search or filters</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Startup Detail Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div id="modalBody">
+                <!-- Modal content will be dynamically inserted -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 India AI Impact Expo. All rights reserved.</p>
+            <p>Data collected and enriched using AI-powered web scraping</p>
+        </div>
+    </footer>
+
+    <!-- Load startup data -->
+    <script>
+        // Load enriched startup data
+        let startupsData = [];
+        
+        fetch('enriched_startups.json')
+            .then(response => response.json())
+            .then(data => {
+                startupsData = data.results;
+                initializeApp();
+            })
+            .catch(error => {
+                console.error('Error loading data:', error);
+                document.getElementById('startupsGrid').innerHTML = 
+                    '<div class="error-message">Failed to load startup data. Please refresh the page.</div>';
+            });
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>
